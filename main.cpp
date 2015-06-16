@@ -28,6 +28,17 @@ struct Level {
 	}
 };
 
+struct Bin {
+	vector<Level> lvs;
+	int bin_remaining_length;
+	int total_rect;
+	Bin() {
+		lvs.clear();
+		bin_remaining_length = bin_length;
+		total_rect = 0;
+	}
+};
+
 int main() {
 	freopen("input.txt", "r", stdin);
 	cin >> bin_length >> bin_height;
@@ -41,14 +52,16 @@ int main() {
 		all_rect.push_back(Rectangle(a,b));
 	}
 	sort(all_rect.begin(), all_rect.end());
+	
 	//for (int i = 0; i < num; i++) {
 	//	cout << all_rect[i].length << " " << all_rect[i].width << endl;
 	//}
+	
 	vector<Level> levels;
 	// put first item to start iteration
 	levels.push_back(Level());
-	levels.back().l.push_back(all_rect[0]);
-	levels.back().remaining_length -= all_rect[0].width;
+	levels[0].l.push_back(all_rect[0]);
+	levels[0].remaining_length -= all_rect[0].width;
 
 	// first fit
 	for (int i = 1; i < num; i++) {
@@ -71,19 +84,60 @@ int main() {
 	int start_point_x = 0;
 	int start_point_y = 0;
 
+	//freopen("data.txt", "w", stdout);
+	//cout << num << endl;
+	//for (int i = 0; i < levels.size(); i++) {
+	//	for (int j = 0; j < levels[i].l.size(); j++) {
+	//		Rectangle temp = levels[i].l[j];
+	//		cout << start_point_x << " " << start_point_y << " " << temp.length << " " << temp.width << endl;
+	//		start_point_y += temp.width;
+	//	}
+	//	start_point_x += levels[i].l[0].length;
+	//	start_point_y = 0;
+	//}
 
-	//cout << levels.size() << endl;
-	freopen("data.txt", "w", stdout);
-	cout << num << endl;
+	// first fit again for the levels
+	vector<Bin> bins;
+	bins.push_back(Bin());
+	bins[0].lvs.push_back(levels[0]);
+	bins[0].bin_remaining_length -= levels[0].l[0].length;
+	bins[0].total_rect += levels[0].l.size();
+
 	for (int i = 0; i < levels.size(); i++) {
-		for (int j = 0; j < levels[i].l.size(); j++) {
-			Rectangle temp = levels[i].l[j];
-			cout << start_point_x << " " << start_point_y << " " << temp.length << " " << temp.width << endl;
-			start_point_y += temp.width;
+		bool found = false;
+		for (int j = 0; j < bins.size(); j++) {
+			int level_length = levels[i].l[0].length;
+			if (level_length < bins[j].bin_remaining_length) {
+				bins[j].lvs.push_back(levels[i]);
+				bins[j].bin_remaining_length -= level_length;
+				bins[j].total_rect += levels[i].l.size();
+				found = true;
+				break;
+			}
 		}
-		start_point_x += levels[i].l[0].length;
-		start_point_y = 0;
+		if (found == false) {
+			bins.push_back(Bin());
+			bins.back().lvs.push_back(levels[i]);
+			bins.back().bin_remaining_length -= levels[i].l[0].length;
+			bins.back().total_rect += levels[i].l.size();
+		}
 	}
-	
+
+
+	freopen("data2.txt", "w", stdout);
+	for (int i = 0; i < bins.size(); i++) {
+		cout << bins[i].total_rect << endl;
+		start_point_x = 0;
+		for (int j = 0; j < bins[i].lvs.size(); j++) {
+			start_point_y = 0;
+			for (int k = 0; k < bins[i].lvs[j].l.size(); k++) {
+				Rectangle temp = bins[i].lvs[j].l[k];
+				cout << start_point_x << " " << start_point_y << " " << temp.length << " " << temp.width << endl;
+				start_point_y += temp.width;
+			}
+			start_point_x += bins[i].lvs[j].l[0].length;
+		}
+	}
+
 	return 0;
 }
