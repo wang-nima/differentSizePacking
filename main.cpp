@@ -103,7 +103,7 @@ int main() {
 	bins[0].bin_remaining_length -= levels[0].l[0].length;
 	bins[0].total_rect += levels[0].l.size();
 
-	for (int i = 0; i < levels.size(); i++) {
+	for (int i = 1; i < levels.size(); i++) {
 		bool found = false;
 		for (int j = 0; j < bins.size(); j++) {
 			int level_length = levels[i].l[0].length;

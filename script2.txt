@@ -1,36 +1,46 @@
-figure(1)
-rectangle('Position',[0,0,87,83])
-rectangle('Position',[87,0,87,83])
-rectangle('Position',[174,0,72,66])
-rectangle('Position',[174,66,72,18])
-figure(2)
-rectangle('Position',[0,0,87,57])
-rectangle('Position',[0,57,82,27])
-rectangle('Position',[87,0,86,77])
-rectangle('Position',[87,77,60,12])
-rectangle('Position',[173,0,70,28])
-rectangle('Position',[173,28,67,59])
-figure(3)
-rectangle('Position',[0,0,86,35])
-rectangle('Position',[0,35,78,51])
-rectangle('Position',[86,0,84,81])
-rectangle('Position',[170,0,77,32])
-rectangle('Position',[170,32,73,56])
-figure(4)
-rectangle('Position',[0,0,67,38])
-rectangle('Position',[0,38,57,24])
-rectangle('Position',[0,62,48,12])
-rectangle('Position',[0,74,42,15])
-rectangle('Position',[67,0,64,55])
-rectangle('Position',[67,55,55,33])
-rectangle('Position',[131,0,64,52])
-rectangle('Position',[131,52,39,30])
-rectangle('Position',[195,0,25,18])
-rectangle('Position',[195,18,21,18])
-figure(5)
-rectangle('Position',[0,0,63,53])
-rectangle('Position',[0,53,31,19])
-rectangle('Position',[63,0,62,59])
-rectangle('Position',[63,59,29,23])
-rectangle('Position',[125,0,55,53])
-rectangle('Position',[125,53,25,19])
+close all;
+figure(1);
+axis equal;
+axis([0 250 0 90]);
+rectangle('Position',[0,0,87,83]);
+rectangle('Position',[87,0,87,57]);
+rectangle('Position',[87,57,82,27]);
+rectangle('Position',[174,0,72,66]);
+rectangle('Position',[174,66,72,18]);
+figure(2);
+axis equal;
+axis([0 250 0 90]);
+rectangle('Position',[0,0,86,77]);
+rectangle('Position',[0,77,60,12]);
+rectangle('Position',[86,0,86,35]);
+rectangle('Position',[86,35,78,51]);
+rectangle('Position',[172,0,77,32]);
+rectangle('Position',[172,32,73,56]);
+figure(3);
+axis equal;
+axis([0 250 0 90]);
+rectangle('Position',[0,0,84,81]);
+rectangle('Position',[84,0,70,28]);
+rectangle('Position',[84,28,67,59]);
+rectangle('Position',[154,0,67,38]);
+rectangle('Position',[154,38,57,24]);
+rectangle('Position',[154,62,48,12]);
+rectangle('Position',[154,74,42,15]);
+rectangle('Position',[221,0,25,18]);
+rectangle('Position',[221,18,21,18]);
+figure(4);
+axis equal;
+axis([0 250 0 90]);
+rectangle('Position',[0,0,64,55]);
+rectangle('Position',[0,55,55,33]);
+rectangle('Position',[64,0,64,52]);
+rectangle('Position',[64,52,39,30]);
+rectangle('Position',[128,0,63,53]);
+rectangle('Position',[128,53,31,19]);
+rectangle('Position',[191,0,55,53]);
+rectangle('Position',[191,53,25,19]);
+figure(5);
+axis equal;
+axis([0 250 0 90]);
+rectangle('Position',[0,0,62,59]);
+rectangle('Position',[0,59,29,23]);
